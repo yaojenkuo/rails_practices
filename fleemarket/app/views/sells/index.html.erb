@@ -1,0 +1,16 @@
+<h1>Listing products</h1>
+<%= link_to 'New product', new_sell_path %> 
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Description</th>
+  </tr>
+ 
+  <% @sells.each do |sell| %>
+    <tr>
+      <td><%= sell.product %></td>
+      <td><%= sell.description %></td>
+      <td><%= link_to 'Show', sell_path(sell) %></td>
+    </tr>
+  <% end %>
+</table>
