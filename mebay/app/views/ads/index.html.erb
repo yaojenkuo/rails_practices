@@ -1,0 +1,14 @@
+<h1>All Ads</h1>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+ 
+  <% @ads.each do |ad| %>
+    <tr>
+      <!--<td><%= ad.name %></td>-->
+      <td><%= link_to ad.name, ad_path(ad) %></td>
+      <!--<td><%= link_to 'Show', ad_path(ad) %></td>-->
+    </tr>
+  <% end %>
+</table>

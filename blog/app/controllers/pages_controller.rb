@@ -13,7 +13,10 @@ class PagesController < ApplicationController
 	end
 
 	def create
-		@page = Page.new[params]
-		render text: params.to_json
+		page_params = params.require(:page).permit(:title, :body, :slug)
+		@page = Page.new(page_params)
+		@page.save
+		redirect_to @page
+		#render text: params.to_json
 	end
 end
