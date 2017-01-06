@@ -10,25 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170106043906) do
+ActiveRecord::Schema.define(version: 20170106064419) do
 
-  create_table "articles", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.boolean  "is_online"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "photo"
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.integer  "user_id"
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.decimal  "price"
     t.boolean  "is_available"
+    t.integer  "store_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.string   "title"
+    t.string   "tel"
+    t.string   "address"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 20170106043906) do
     t.string   "tel"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ware_houses", force: :cascade do |t|
+    t.integer  "store_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_ware_houses_on_product_id"
+    t.index ["store_id"], name: "index_ware_houses_on_store_id"
   end
 
 end
